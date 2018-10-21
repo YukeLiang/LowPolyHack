@@ -8,7 +8,7 @@ Transfer image into low poly
 URL of the website
 
 
-##Steps to get Low Poly style
+## Steps to get Low Poly style
 
 ### Reduce noise:
     Why: Noise will affect edge detection. Since we are reducing the precision and the level of details in the image, we want the edge lines to be as clean and simple as possible.
