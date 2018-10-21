@@ -1,0 +1,13 @@
+# LowPolyHack
+
+Steps to get Low Poly style
+
+- Reduce noise:
+    Why: Noise will affect edge detection. 
+    Averaging: Good for removing grain noise (bad)
+    Gaussian filters
+- Edge detection
+    Why: 
+    Because Delaunay Triangulation genrates vertices randomly. Need to add edge constraints.
+- Delaunay triangulation
+- Colorize
