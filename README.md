@@ -16,7 +16,7 @@ URL of the website
     Averaging: Good for removing grain noise (bad)
     Gaussian filters
 ```
-###Edge detection
+### Edge detection
     Why: Delaunay Triangulation genrates vertices randomly, which is the problem of a lot of current applications. We want to constrain the the range of pixels within edge pixels to reserve the shape of objects.
 ```
     Sobel (worse than Canny)
@@ -26,11 +26,11 @@ URL of the website
     log
     zerocross (explore)
 ```
-###Delaunay triangulation
+### Delaunay triangulation
     Implement the method when have time 
-###Colorize
+### Colorize
     mean value?
-###Improve the result
+### Improve the result
 
 ## Deployment
 
