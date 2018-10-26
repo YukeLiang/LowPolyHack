@@ -27,7 +27,7 @@ URL of the website
     zerocross (explore)
 ```
 ### Image Segmentation
-    An auxiliary or alternative towards edge detection
+    A potential auxiliary or alternative towards edge detection
 ### Delaunay triangulation
     Implement the method when have time 
 ### Colorize
