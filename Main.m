@@ -43,13 +43,13 @@ scatter(X,Y);
 % ------------Just emperimental approach. NO GUARANTEE.
 dt = delaunayTriangulation(X,Y);
 dt1 = delaunay(X,Y);
+
 % Plot out the triPlot
 
 triplot(dt);
 triplot(dt1);
 figure();
 imshow(orig_img);
-plot();
 
 
 
