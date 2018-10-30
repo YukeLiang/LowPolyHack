@@ -33,11 +33,12 @@ imshow(edge_img);
 %triangulation
 dt = delaunayTriangulation(X,Y);
 dt1 = delaunay(X,Y);
+C = circumcenter(dt);
+display(C);
 triplot(dt);
 triplot(dt1);
 figure();
 imshow(orig_img);
-plot();
 
 
 
