@@ -1,54 +1,49 @@
-% figure();
-% 
-% P = gallery('uniformdata',[30 2],0);
-% 
-% plot(P);
 
+%----------------------- 
+% Image processing: convolution, Gaussian smoothing
+%-----------------------
+% I5mage credit: http://commons.wikimedia.org/wiki/File:Beautiful-pink-flower_-_West_Virginia_-_ForestWander.jpg
 
-orig_img = imread('img1.jpg');
-figure();
-%denoise with gaussian filter
-sigma = 2;
-% Rule of thumb: set kernal size k ~= 2*pi*sigma
-k = ceil(2*pi*sigma);
-% Generate a Gaussian kernal 
-h = fspecial('gaussian', [k k], sigma);
-%h = fspecial('sobel');
+% Image credit: CAVE Lab
+
+img = imread('Di-Caprio.jpg');
+fh = figure;
+
+method_list = {'Sobel'  , 'Prewitt' , 'Roberts' , 'log' , 'zerocross' , 'Canny' , 'approxcanny'};
+thres_list = { 0.1, 0.1,0.15,0.005,0.005,0.3,0.3 };
+
+gray_img = rgb2gray(img); 
+subplot(2, 4, 1); imshow(img); title('Color Image');
+
+% First original figure
+for i = 1:length(method_list)
+    thresh = thres_list{i};
+
+    edge_img = edge(gray_img,method_list{i}, thresh);
     
-% Perform convolution 
-blur_img = imfilter(orig_img, h, 'conv', 'replicate');
+    k = 2;
     
-% Display the result
-imshow(blur_img); 
-title(['\sigma = ' num2str(sigma)]);
+    %TODO #2
+    
+    % Erode and Dilate Noise Elimination --- less satisifying
+    %edge_img = bwmorph(edge_img, 'dilate', k);
+    %edge_img = bwmorph(edge_img, 'erode', k);
 
-%blur_img = imresize(blur_img,0.3);
-gray_img = rgb2gray(blur_img);
-thresh = 0.3;
-edge_img = edge(gray_img,'canny', thresh);
-imshow(edge_img);
-
-[X,Y] = find(edge_img);
-
-%triangulation
-% make a break point here to visualize the points
-scatter(X,Y);
-
-%       TODO #1
-
-%  (One of) These function connects the points we have right now
-%  Since we have too many f**king points, we need to get rid of most of
-%  them. In addition, to keep the outer(and Inner) profile, We need to add
-%  some points after that to make sure the triangles wouldn't mess up
-% ------------Just emperimental approach. NO GUARANTEE.
-dt = delaunayTriangulation(X,Y);
-dt1 = delaunay(X,Y);
-% Plot out the triPlot
-
-triplot(dt);
-triplot(dt1);
-figure();
-imshow(orig_img);
-plot();
+    subplot(2, 4, i+1); imshow(edge_img); title(method_list{i} );
+end
 
 
+% Resized Figure
+fh2 = figure;
+img_resized = imresize(img, 0.3);
+
+gray_img = rgb2gray(img_resized); 
+subplot(2, 4, 1); imshow(img_resized); title('Resized Color Image');
+
+
+for i = 1:length(method_list)
+    thresh = thres_list{i};
+
+    edge_img = edge(gray_img,method_list{i}, thresh);
+    subplot(2, 4, i+1); imshow(edge_img); title(method_list{i} );
+end
