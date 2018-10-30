@@ -31,8 +31,20 @@ imshow(edge_img);
 [X,Y] = find(edge_img);
 
 %triangulation
+% make a break point here to visualize the points
+scatter(X,Y);
+
+%       TODO #1
+
+%  (One of) These function connects the points we have right now
+%  Since we have too many f**king points, we need to get rid of most of
+%  them. In addition, to keep the outer(and Inner) profile, We need to add
+%  some points after that to make sure the triangles wouldn't mess up
+% ------------Just emperimental approach. NO GUARANTEE.
 dt = delaunayTriangulation(X,Y);
 dt1 = delaunay(X,Y);
+% Plot out the triPlot
+
 triplot(dt);
 triplot(dt1);
 figure();
