@@ -19,6 +19,9 @@ gray_img = rgb2gray(adjusted_img);
 % Increase contrast
 adjusted_img = imadjust(gray_img,[0 0.85],[0.15 1]);
 
-fil_img = adjusted_img;
+img_resized = imresize(adjusted_img, 0.5);
+% img_resized = imresize(adjusted_img, [200 (200 / size(adjusted_img,1) * size(adjusted_img,2))]);
+
+fil_img = img_resized;
 
 end
