@@ -5,7 +5,7 @@ function [tri_img, edge_vertices] = triangulate(edge_img, total_vertices)
     % ratio = # of edge point * Ratio_Thres / # of non-edge points
     % works fine b/w 75 - 125
     Ratio_Thres = 75;
-    min_Dis = 25; %unit ==>Pixels
+    min_Dis = 10; %unit ==>Pixels
     
     %output = zeros(size(edge_img,1),size(edge_img,2));
     corners = [1,1;

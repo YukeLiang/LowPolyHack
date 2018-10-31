@@ -1,6 +1,6 @@
 %main file to execute triangulation
-orig_img = imread('Test_Pic.png');
-%orig_img = imread('img1.jpg');
+%orig_img = imread('Test_Pic.png');
+orig_img = imread('img1.jpg');
 %orig_img = imread('img2.jpg');
 figure();
 %denoise with gaussian filter
@@ -20,6 +20,8 @@ title(['\sigma = ' num2str(sigma)]);
 
 %blur_img = imresize(blur_img,0.3);
 gray_img = rgb2gray(blur_img);
+corners = detectHarrisFeatures(gray_img);
+hold on; plot(corners.selectStrongest(100));
 thresh = 0.3;
 edge_img = edge(gray_img,'canny', thresh);
 imshow(edge_img);
