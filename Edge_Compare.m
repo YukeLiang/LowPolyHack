@@ -6,14 +6,14 @@
 
 % Image credit: CAVE Lab
 
-img = imread('Di-Caprio.jpg');
+img = imread('test.png');
 fh = figure;
 
 method_list = {'Sobel'  , 'Prewitt' , 'Roberts' , 'log' , 'zerocross' , 'Canny' , 'approxcanny'};
 thres_list = { 0.1, 0.1,0.15,0.005,0.005,0.3,0.3 };
 
 gray_img = rgb2gray(img); 
-subplot(2, 4, 1); imshow(img); title('Color Image');
+subplot(2, 4, 1); imshow(gray_img); title('Color Image');
 
 % First original figure
 for i = 1:length(method_list)

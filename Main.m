@@ -1,5 +1,7 @@
 %main file to execute triangulation
-orig_img = imread('img1.jpg');
+orig_img = imread('Test_Pic.png');
+%orig_img = imread('img1.jpg');
+%orig_img = imread('img2.jpg');
 figure();
 %denoise with gaussian filter
 sigma = 2;
@@ -22,9 +24,11 @@ thresh = 0.3;
 edge_img = edge(gray_img,'canny', thresh);
 imshow(edge_img);
 
-dt = triangulate(edge_img);
+[dt, V] = triangulate(edge_img,400);
 
 triplot(dt);
+hold on
+scatter(V(:,1),V(:,2),'filled','r');
 %triplot(dt1);
 
 
