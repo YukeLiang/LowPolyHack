@@ -4,7 +4,7 @@ function [tri_img, edge_vertices] = triangulate(edge_img, total_vertices)
     %the rate of edge points vs non-edge point 
     % ratio = # of edge point * Ratio_Thres / # of non-edge points
     % works fine b/w 75 - 125
-    Ratio_Thres = 75;
+    Ratio_Thres = 0.96;
     min_Dis = 10; %unit ==>Pixels
     
     %output = zeros(size(edge_img,1),size(edge_img,2));
@@ -16,7 +16,7 @@ function [tri_img, edge_vertices] = triangulate(edge_img, total_vertices)
     [X,Y] = find(edge_img);
     [XX,YY] = find(~edge_img);
     
-    Ratio = size(X,1) * Ratio_Thres / size(XX,1);
+    Ratio = size(X,1) * Ratio_Thres / (size(XX,1) * ( 1 - Ratio_Thres));
     
     num_vertices = ceil(total_vertices*Ratio);   %half
     v_index_edge = randperm(size(X,1),num_vertices);
