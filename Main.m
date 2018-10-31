@@ -12,15 +12,12 @@ hold on; plot(corners.selectStrongest(100));
 thresh = 0.3;
 edge_img = edge(fil_img,'canny', thresh);
 imshow(edge_img);
-
+% 
 [dt, V] = triangulate(edge_img,800);
 
 triplot(dt);
 hold on
 scatter(V(:,1),V(:,2),'filled','r');
 %triplot(dt1);
-
-
-
 
 
