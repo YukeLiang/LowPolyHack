@@ -17,7 +17,8 @@ bw_img = rgb2gray(img);
 %%#ok<IM2BW>
 bw_img = imresize(bw_img, 0.5);
 subplot(1, 2, 2);
-imshow(bw_img); title('Binary Image');
+imshow(bw_img);
+title('Binary Image');
 
 %saveas(fh1, 'binary_coins.png');
 
