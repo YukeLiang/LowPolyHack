@@ -34,17 +34,15 @@ function [tri_img, edge_vertices] = triangulate(edge_img, total_vertices)
         end
     end
     figure();
+    edge_vertices = vertices;
     
     for i = 1: (total_vertices - num_vertices)
         vertices(num_vertices+i,:) = [XX(v_index_nonedge(i)),YY(v_index_nonedge(i))];
     end
 
     cat(1, vertices, corners);
-    vertices_yx = [vertices(:,2), vertices(:,1)];
-    output = delaunayTriangulation(vertices_yx);
+    output = delaunayTriangulation(vertices);
     tri_img = output;
-    edge_vertices = vertices_yx(1:num_vertices,:); 
-
 end
 
 
