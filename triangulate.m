@@ -1,4 +1,4 @@
-% total_vertices --> the maximum vertice point it has
+% total_vertices --> the maximum number of vertices
 function [tri_img, edge_vertices] = triangulate(edge_img, total_vertices)
     
     %the rate of edge points vs non-edge point 
@@ -8,11 +8,13 @@ function [tri_img, edge_vertices] = triangulate(edge_img, total_vertices)
     min_Dis = 10; %unit ==>Pixels
     
     %output = zeros(size(edge_img,1),size(edge_img,2));
+    vertices = zeros(total_vertices, 2);
     corners = [1,1;
                1,size(edge_img,2);
                size(edge_img,1),1;
                size(edge_img,1),size(edge_img,2)];
-    
+    vertices = cat(1, vertices, corners);
+        
     [X,Y] = find(edge_img);
     [XX,YY] = find(~edge_img);
     
@@ -21,7 +23,6 @@ function [tri_img, edge_vertices] = triangulate(edge_img, total_vertices)
     num_vertices = ceil(total_vertices*Ratio);   
     v_index_edge = randperm(size(X,1),num_vertices);
     v_index_nonedge = randperm(size(XX,1),total_vertices - num_vertices);
-    vertices = zeros(total_vertices, 2);
     
     count = 1;
     
@@ -39,18 +40,17 @@ function [tri_img, edge_vertices] = triangulate(edge_img, total_vertices)
         vertices(num_vertices+i,:) = [XX(v_index_nonedge(i)),YY(v_index_nonedge(i))];
     end
 
-    cat(1, vertices, corners);
-    vertices_yx = [vertices(:,2), vertices(:,1)];
-    output = delaunayTriangulation(vertices_yx);
+    %vertices_yx = [vertices(:,2), vertices(:,1)];
+    output = delaunayTriangulation(vertices);
     tri_img = output;
-    edge_vertices = vertices_yx(1:num_vertices,:); 
+    edge_vertices = vertices(1:num_vertices,:);
 
 end
 
 
 %if it is too close to current points
 function Close = ifNear(vertices, X1, Y1, T)
-    Close = 0;
+    Close = 0;  
     for j = 1 : size(vertices,1)
         
          X2 = vertices(j,1);
@@ -60,5 +60,4 @@ function Close = ifNear(vertices, X1, Y1, T)
             Close = 1;
         end
     end
-
 end

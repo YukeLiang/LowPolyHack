@@ -1,5 +1,4 @@
 %main file to execute triangulation
-%orig_img = imread('Test_Pic.png');
 orig_img = imread('img1.jpg');
 %orig_img = imread('img2.jpg');
 fh1 = figure();
@@ -14,10 +13,12 @@ edge_img = edge(fil_img,'canny', thresh);
 imshow(edge_img);
 % 
 [dt, V] = triangulate(edge_img,800);
+colored_img = colorization(orig_img,dt);
 
-triplot(dt);
+imshow(colored_img);
+%triplot(dt);
 hold on
-scatter(V(:,1),V(:,2),'filled','r');
+%scatter(V(:,1),V(:,2),'filled','r');
 %triplot(dt1);
 
 
