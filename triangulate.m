@@ -1,6 +1,8 @@
 % total_vertices --> the maximum number of vertices
 function [tri_img, edge_vertices] = triangulate(edge_img, total_vertices)
     
+
+    imgcorners = detectHarrisFeatures(edge_img);
     %the rate of edge points vs non-edge point 
     % ratio = # of edge point * Ratio_Thres / # of non-edge points
     % works fine b/w 75 - 125
@@ -18,19 +20,25 @@ function [tri_img, edge_vertices] = triangulate(edge_img, total_vertices)
     [X,Y] = find(edge_img);
     [XX,YY] = find(~edge_img);
     
-    Ratio = size(X,1) * Ratio_Thres / (size(XX,1) * ( 1 - Ratio_Thres));
+    Ratio = min(size(X,1) * Ratio_Thres / (size(XX,1) * ( 1 - Ratio_Thres)),0.8);
     
-    num_vertices = ceil(total_vertices*Ratio);   
-    v_index_edge = randperm(size(X,1),num_vertices);
+    num_vertices = ceil(total_vertices*Ratio);  
+    num_edge = 500; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    v_index_edge = randperm(size(X,1),num_edge);
     v_index_nonedge = randperm(size(XX,1),total_vertices - num_vertices);
     
-    count = 1;
+    %count = 1;
+    location = imgcorners.selectStrongest(num_edge/2);
+    k =  [double(location.Location(:,2)), double(location.Location(:,1))];
+    vertices = [vertices;k];%zeros(total_vertices, 2);
+    
+    count = size(imgcorners,1)+1;
     
     for i = 1:num_vertices
         X1 = X(v_index_edge(i));
         Y1 = Y(v_index_edge(i));
         if(~ifNear(vertices, X1,Y1, min_Dis))
-            vertices(count,:) = [X1,Y1];
+            vertices = [vertices ; [X1,Y1]];
             count = count + 1;
         end
     end
