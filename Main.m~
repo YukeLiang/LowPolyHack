@@ -8,42 +8,14 @@ fil_img = magicfil(orig_img);
 %blur_img = imresize(blur_img,0.3);
 corners = detectHarrisFeatures(fil_img);
 hold on; plot(corners.selectStrongest(100));
-thresh = 0.3;
-edge_img = edge(fil_img,'canny', thresh);
+thresh = 0.01;
+edge_img = edge(fil_img,'Sobel', thresh);
 imshow(edge_img);
 % 
-[dt, V] = triangulate(edge_img,800);
+% [dt, V] = triangulate(edge_img,800);
+colored_img = colorization(orig_img,dt);
 
-
-
-%% Color
-R_Channel = zeros(size(orig_img,1), size(orig_img,2));
-G_Channel = zeros(size(orig_img,1), size(orig_img,2));
-B_Channel = zeros(size(orig_img,1), size(orig_img,2));
-
-% Retrieve RGB of the center of each triangle
-IC = round(incenter(dt),0);
-RGB = zeros(size(IC,1),3);
-
-for r = 1:size(IC,1)
-    RGB(r,1) = orig_img(IC(r,1),IC(r,2),1);
-    RGB(r,2) = orig_img(IC(r,1),IC(r,2),2);
-    RGB(r,3) = orig_img(IC(r,1),IC(r,2),3);
-end
-% Loop over the new img to decide which triangle the pixel belongs to
-
-for i = 1:size(orig_img,1)
-  for j = 1:size(orig_img,2)
-      t_id = pointLocation(dt,i,j);
-      G_Channel(i,j) = RGB(t_id,2);
-      B_Channel(i,j) = RGB(t_id,3);
- % Assign the color of that triangle to the pixel
-  end
-end
-black = zeros(889,630);
-R_Channel = orig_img(:,:,1);   
-
-imshow(cat(3,R_Channel,black,black))
+imshow(colored_img);
 %triplot(dt);
 hold on
 %scatter(V(:,1),V(:,2),'filled','r');

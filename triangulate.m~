@@ -17,7 +17,7 @@ function [tri_img, edge_vertices] = triangulate(edge_img, total_vertices,...
     
     Ratio = size(X,1) * Ratio_Thres / (size(XX,1) * ( 1 - Ratio_Thres));
     
-    num_vertices = floor(total_vertices*Ratio);   
+    num_vertices = floor(total_vertices*ratio);   
     v_index_edge = randperm(size(X,1),num_vertices);
     v_index_nonedge = randperm(size(XX,1),total_vertices - num_vertices);
     
