@@ -6,7 +6,7 @@
 
 % Image credit: CAVE Lab
 
-img = imread('test.png');
+img = imread('img4.jpg');
 fh = figure;
 
 method_list = {'Sobel'  , 'Prewitt' , 'Roberts' , 'log' , 'zerocross' , 'Canny' , 'approxcanny'};

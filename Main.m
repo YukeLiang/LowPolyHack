@@ -1,7 +1,10 @@
-lowpolify('img1.jpg',0.01,'Sobel',1200,0.97,5);
 % =======
-% close all
-% clear all
+close all
+clear all
+
+
+lowpolify('img1.jpg',0.03,'sobel',1200,0.97,5, 0.8);
+
 % %main file to execute triangulation
 % orig_img = imread('img3.jpg');
 % %orig_img = imread('img2.jpg');
