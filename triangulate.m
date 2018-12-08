@@ -46,7 +46,6 @@ function [tri_img, edge_vertices] = triangulate(orig_img,edge_img, total_vertice
             count = count + 1;
         end
     end
-    figure();
     
     for i = 1: (total_vertices - num_vertices)
         vertices(num_vertices+i,:) = [XX(v_index_nonedge(i)),YY(v_index_nonedge(i))];
