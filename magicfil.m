@@ -21,7 +21,7 @@ if nargin > 1
         scale = 1;
     end
 else
-    DoS = 8000;
+    DoS = 4000;
     SS = 10;
     sigma = 1;
     scale = 1;

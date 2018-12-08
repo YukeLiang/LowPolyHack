@@ -63,7 +63,7 @@ function [tri_img, edge_vertices] = triangulate(orig_img,edge_img, total_vertice
 
     imshow(colored_img);
     %hold on;imshow(edge_img);
-    hold on; plot(location);
+    %hold on; plot(location);
 end
 
 

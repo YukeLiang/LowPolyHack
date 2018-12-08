@@ -9,12 +9,12 @@ function lp_img = lowpolify(file,edge_thresh,edge_style,...
 % min_distance - The minimum distance between each vertex
 
 orig_img = imread(file);
-fh1 = figure();
+
 fil_img = magicfil(orig_img);
 % corners = detectHarrisFeatures(fil_img);
 % hold on; plot(corners.selectStrongest(100));
 thresh = edge_thresh;
-edge_img = edge(rgb2gray(orig_img),edge_style, thresh);
+edge_img = edge(fil_img,edge_style, thresh);
 sig_points = [1,1;
                1,size(edge_img,2);
                size(edge_img,1),1;
