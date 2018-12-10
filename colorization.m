@@ -25,5 +25,6 @@ for i = 1:size(orig_img,1)
 end
 
 colored_img = cat(3,R_Channel,G_Channel,B_Channel);
+imwrite(colored_img, 'output.jpg');
 end
 

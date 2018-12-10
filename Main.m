@@ -3,5 +3,5 @@ close all
 clear all
 
 
-lowpolify('images/img1.jpg',0.01,'Sobel',1200,0.97,3, 2);
+lowpolify('images/corgi.jpeg',0.01,'Sobel',1000,0.97,20, 3);
 
