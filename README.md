@@ -3,9 +3,20 @@
 ## Getting Started
 Transfer image into low poly
 
-### Prerequisites
+Run:
+```MATLAB
+lp_img = lowpolify(file,edge_thresh,edge_style,...
+    num_vertices,ratio,min_distance, FeatureRatio)
+```
+to generate low poly pictures
 
-URL of the website
+### Some results
+
+Original                   |  Low polified
+:-------------------------:|:-------------------------:
+![](./images/corgi.jpeg)    |  ![](./images/CORGI.jpg)
+![](./images/Di-Caprio.jpg)    |  ![](./images/Di-cap.png)
+![](./images/wzn.jpg)    |  ![](./images/wzn_lp.jpg)
 
 
 ## Steps to get Low Poly style
@@ -17,7 +28,7 @@ URL of the website
     Gaussian filters
 ```
 ### Edge detection
-    Why: Delaunay Triangulation genrates vertices randomly, which is the problem of a lot of current applications. We want to constrain the the range of pixels within edge pixels to reserve the shape of objects.
+
 ```
     Sobel (worse than Canny)
     Canny
@@ -26,17 +37,17 @@ URL of the website
     log
     zerocross (explore)
 ```
-### Image Segmentation
-    A potential auxiliary or alternative towards edge detection
-### Delaunay triangulation
-    Implement the method when have time 
-### Colorize
-    mean value?
-### Improve the result
+### Feature extraction
 
-## Deployment
+It is necessary to perserve the features of the original picture.
 
-Add additional notes about how to deploy this on a live system
+We used Harris Features detector to achieve feature extractions (As you can see in the green crosses)
+
+### trianglization and color
+
+We used Delaunay triangulation to form the triangle.
+The color of the center pixel of each trangle is picked, the mean or mode color will not perserve the feature correctly
+
 
 ## Built With
 
@@ -53,13 +64,4 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 * **Yuke Liang** - *Initial work* - [LowPolyHack](URL)
 * **Yudong Huang** - *Initial work* - [LowPolyHack](URL)
 * **Zhaoning Wang** - *Initial work* - [LowPolyHack](URL)
-
-## License
- not yet
-
-## Acknowledgments
-
-* Tip to use
-* Inspiration:
-* etc
 
